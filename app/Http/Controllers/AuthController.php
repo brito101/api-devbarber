@@ -50,7 +50,7 @@ class AuthController extends Controller
                 }
 
                 $info = auth()->user();
-                $info['avatar'] = url('media/avatars/' . $info['avatar']);
+                $info['avatar'] = url('storage/avatars/' . $info['avatar']);
                 $array['data'] = $info;
                 $array['token'] = $token;
             } else {
@@ -83,7 +83,7 @@ class AuthController extends Controller
         }
 
         $info = auth()->user();
-        $info['avatar'] = url('media/avatars/' . $info['avatar']);
+        $info['avatar'] = url('storage/avatars/' . $info['avatar']);
         $array['data'] = $info;
         $array['token'] = $token;
 
