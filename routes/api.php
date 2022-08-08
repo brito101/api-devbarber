@@ -13,22 +13,22 @@ Route::get('/ping', function () {
 
 Route::get('/401', [AuthController::class, 'unauthorized'])->name('login');
 
-//Route::get('/random', [BarberController::class, 'createRandom']);
+// Route::get('/random', [BarberController::class, 'createRandom']);
 
 Route::post('/auth/login', [AuthController::class, 'login']);
-// Route::post('/auth/logout', [AuthController::class, 'logout']);
-// Route::post('/auth/refresh', [AuthController::class, 'refresh']);
+Route::post('/auth/logout', [AuthController::class, 'logout']);
+Route::post('/auth/refresh', [AuthController::class, 'refresh']);
 Route::post('/user', [AuthController::class, 'create']);
 
-// Route::get('/user', [UserController::class, 'read']);
+Route::get('/user', [UserController::class, 'read']);
 // Route::put('/user', [UserController::class, 'update']);
 // Route::post('/user/avatar', [UserController::class, 'updateAvatar']);
 // Route::get('/user/favorites', [UserController::class, 'getFavorites']);
 // Route::post('/user/favorite', [UserController::class, 'toggleFavorite']);
 // Route::get('/user/appointments', [UserController::class, 'getAppointments']);
 
-// Route::get('/barbers', [BarberController::class, 'list']);
-// Route::get('/barber/{id}', [BarberController::class, 'one']);
+Route::get('/barbers', [BarberController::class, 'list']);
+Route::get('/barber/{id}', [BarberController::class, 'one']);
 // Route::post('/barber/{id}/appointment', [BarberController::class, 'setAppointment']);
 
 // Route::get('/search', [BarberController::class, 'search']);
