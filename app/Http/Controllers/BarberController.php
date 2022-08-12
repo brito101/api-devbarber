@@ -341,7 +341,7 @@ class BarberController extends Controller
                 ->get();
 
             foreach ($barbers as $bkey => $barber) {
-                $barbers[$bkey]['avatar'] = url('media/avatars/' . $barbers[$bkey]['avatar']);
+                $barbers[$bkey]['avatar'] = url('storage/avatars/' . $barbers[$bkey]['avatar']);
             }
 
             $array['list'] = $barbers;

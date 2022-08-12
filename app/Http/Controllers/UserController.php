@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-
 use Intervention\Image\Facades\Image;
-
 use App\Models\User;
 use App\Models\UserAppointment;
 use App\Models\UserFavorite;
@@ -72,15 +70,14 @@ class UserController extends Controller
     {
         $array = ['error' => '', 'list' => []];
 
-        $favs = UserFavorite::select()
-            ->where('id_user', $this->loggedUser->id)
+        $favs = UserFavorite::where('id_user', $this->loggedUser->id)
             ->get();
 
         if ($favs) {
             foreach ($favs as $fav) {
 
                 $barber = Barber::find($fav['id_barber']);
-                $barber['avatar'] = url('media/avatars/' . $barber['avatar']);
+                $barber['avatar'] = url('storage/avatars/' . $barber['avatar']);
                 $array['list'][] = $barber;
             }
         }
@@ -98,11 +95,9 @@ class UserController extends Controller
             ->get();
 
         if ($apps) {
-
             foreach ($apps as $app) {
-
                 $barber = Barber::find($app['id_barber']);
-                $barber['avatar'] = url('media/avatars/' . $barber['avatar']);
+                $barber['avatar'] = url('storage/avatars/' . $barber['avatar']);
 
                 $service = BarberServices::find($app['id_service']);
 
@@ -175,7 +170,7 @@ class UserController extends Controller
 
         $avatar = $request->file('avatar');
 
-        $dest = public_path('/media/avatars');
+        $dest = public_path('/storage/avatars');
         $avatarName = md5(time() . rand(0, 9999)) . '.jpg';
 
         $img = Image::make($avatar->getRealPath());
